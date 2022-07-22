@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Document(collection = "transactions")
 public class Transaction {
+
     @Id
     private String transactionId;
     private BigDecimal transactionAmount;
@@ -19,5 +20,4 @@ public class Transaction {
     private String customerId;
     private String customerLastName;
     private LocalDateTime transactionDate;
-
 }

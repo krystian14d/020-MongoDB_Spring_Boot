@@ -1,6 +1,9 @@
 package com.amigoscode.demo;
 
+import com.amigoscode.demo.dbDataLoader.FeePercentageDataLoader;
 import com.amigoscode.demo.dbDataLoader.TransactionDataLoader;
+import com.amigoscode.demo.fee.Fee;
+import com.amigoscode.demo.fee.FeeRepository;
 import com.amigoscode.demo.transaction.Transaction;
 import com.amigoscode.demo.transaction.TransactionRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -18,11 +21,17 @@ public class DemoApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(TransactionRepository transactionRepository){
+    CommandLineRunner commandLineRunner(
+            TransactionRepository transactionRepository,
+            FeeRepository feeRepository
+    ){
         return args -> {
             TransactionDataLoader transactionDataLoader = new TransactionDataLoader();
             List<Transaction> transactions = transactionDataLoader.readCsv();
             transactionRepository.saveAll(transactions);
+
+            List<Fee> fees = FeePercentageDataLoader.readCsv();
+            feeRepository.saveAll(fees);
         };
     }
 

@@ -20,9 +20,6 @@ public class TransactionDataLoader {
         FileReader fileReader = new FileReader(FILE_NAME);
         BufferedReader br = new BufferedReader(fileReader);
 
-//        Path path = Paths.get(FILE_NAME);
-//        BufferedReader br = Files.newBufferedReader(path);
-
         List<Transaction> transactions = new ArrayList<>();
 
         //skip header in the CSV file:
