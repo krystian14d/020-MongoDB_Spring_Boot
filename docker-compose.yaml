@@ -6,11 +6,12 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - data:/data
+#      - data:/data
+      - ./init-mongodb:/docker-entrypoint-initdb.d
+      - ./init-mongodb/data:/tmp/data
     environment:
       - MONGO_INITDB_ROOT_USERNAME=rootuser
       - MONGO_INITDB_ROOT_PASSWORD=rootpass
-      - MONGO_INITDB_DATABASE=testdb1
   mongo-express:
     image: mongo-express
     container_name: mongo-express
@@ -21,6 +22,8 @@ services:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=rootuser
       - ME_CONFIG_MONGODB_ADMINPASSWORD=rootpass
       - ME_CONFIG_MONGODB_SERVER=mongodb
+    depends_on:
+      - mongodb
 volumes:
   data: {}
 networks:
