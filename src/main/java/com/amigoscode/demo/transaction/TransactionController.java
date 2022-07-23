@@ -1,6 +1,7 @@
 package com.amigoscode.demo.transaction;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,8 +17,6 @@ public class TransactionController {
     @GetMapping("/api")
     public List<TransactionDto> findTransactions(@RequestParam(name = "id") List<String> userIds){
 
-
-
-        return null;
+        return transactionService.findTransactionsById(userIds);
     }
 }
